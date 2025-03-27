@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creserver</title>
+    <link rel="stylesheet" href="../../styles/resource_packs/style.css">
+</head>
+<body>
+    <div class="title-bar">
+        <div class="custom-buttons">
+            <img id="minimize-btn" src="../../assets/essential_graphics/minimize_button.jpg" alt="Minimize">
+            <img id="close-btn" src="../../assets/essential_graphics/close_button.jpg" alt="Close">
+        </div>
+    </div>
+
+    <div class="scrollable-content">
+        <div class="centered-container3">
+            <div class="content-box">
+                <h1><u>2D Sprites</u></h1>
+                <p>
+                    Thankfully, 2D sprites are actually a little easier (in my experience) than 3D models, mainly because 
+                    there's one less step involved, and instead, one more config option!
+                </p>        
+                <p>
+                    Item Config → Texture 
+                </p>
+                <div class="diagram">
+                    <div class="diagram-item">
+                        <img id="config" src="../../assets/essential_graphics/config-file.png" alt="Config">
+                        <p class="diagram-label config-label">Config (.yml)</p>
+                    </div>
+                    <span class="arrow">→</span>
+                    <div class="diagram-item">
+                        <img id="texture" src="../../assets/essential_graphics/texture-file.png" alt="Texture">
+                        <p class="diagram-label texture-label">Texture (.png)</p>
+                    </div>
+                </div>
+                <p>
+                    As you can see, there is no longer a model .json file involved, and the item links directly up to a texture in
+                    the correct path. The configuration of an item points to the texture that the item should use. However, you now
+                    have to let Minecraft know how exactly you want this item to be displayed in your hand.
+                </p>
+                <h1>Here's An Example:</h1>
+                <div class="code-block">
+                    <div class="code-header">Nexo/items/skill_icons.yml</div>
+                    <pre><code class="language-yaml">
+dagger_throw_icon:
+material: PAPER
+Pack:
+  parent_model: item/generated
+  textures:
+  - skill_icons/dagger_throw
+  custom_model_data: 1000</code>
+                    </pre>
+                </div>
+            <p>
+                - `dagger_throw_icon` is the <b>ID</b> of the item. Every item has its own, unique <b>ID</b>.
+            </p>
+            <p>
+                - The <b>base item</b>, or `material:` that this axe is using is a Paper.
+            </p>
+            <p>
+                - This item does not have a <b>display name</b>.
+            </p>
+            <p>
+                - In terms of the pack, it's <b>custom-model-data</b> is being assigned to the number 1,000.
+            </p>
+            <p>
+                The texture path is being assigned to a .png file located in the directory skill_icons/dagger_throw. That's in:
+            </p>
+            <p>
+                Nexo/pack/assets/minecraft/textures/skill_icons/dagger_throw.png
+            </p>
+            <p>
+                Before we move on, let's talk about what `parent_model` means.
+            </p>
+            <hr>
+            <div style="height: 20px;"></div>
+            <h1><u>Parent Models</u></h1>
+            <p>
+                To put it simply, the `parent_model` configuration option just determines how your item looks when it's held.
+            </p>
+            <p>
+                You may have noticed that holding a FEATHER or a PAPER in your hand, looks different from holding a SWORD
+                or a STICK. That's due to the parent_models of those items being different.
+            </p>
+            <p>
+                For items that should be held horizontally like PAPER or FEATHERs, use 'parent_model: item/generated'.
+            </p>
+            <p>
+                For items that should be held vertically like SWORDs or TOOLs, use 'parent_model: item/handheld'.
+            </p>
+            <img id="cmd-showcase3" src="../../assets/essential_graphics/cmd-showcase3.png" alt="Handheld VS Generated">
+            <p>
+                So pretty much, if you're creating 2D tools or weapons, item/handheld is the way to go. Otherwise, for like ores 
+                and stuff, you're likely going to want to stick with item/generated.
+            </p>
+            <hr>
+            <div style="height: 20px;"></div>
+            <h1><u>Closing Remarks:</u></h1>
+            <img id="luna-img" src="../../assets/essential_graphics/luna.png" alt="Luna">
+            <p>
+                As you can see, even simpler than the 3D model process. Again, if there's something I missed or you think is 
+                confusing, reach out to me on Discord!
+            </p>
+            <button id="back-btn" class="nav-button">
+                ← Back
+            </button>
+            <button id="glyphs-btn" class="nav-button">
+                Glyphs →
+            </button>
+        </div>
+    </div>
+    <script src="../../renderers/resource_packs/rp_introduction.js"></script>
+</body>
+</html>

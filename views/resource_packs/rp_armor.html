@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creserver</title>
+    <link rel="stylesheet" href="../../styles/resource_packs/style.css">
+</head>
+<body>
+    <div class="title-bar">
+        <div class="custom-buttons">
+            <img id="minimize-btn" src="../../assets/essential_graphics/minimize_button.jpg" alt="Minimize">
+            <img id="close-btn" src="../../assets/essential_graphics/close_button.jpg" alt="Close">
+        </div>
+    </div>
+
+    <div class="scrollable-content">
+        <div class="centered-container5">
+            <div class="content-box">
+                <h1><u>Custom Armors</u></h1>
+                <p>
+                    Custom armors are interesting because while there are multiple ways to add them, the method you must
+                    choose depends entirely on your server version. As recent Minecraft updates have become more and more data-driven,
+                    the more updated your server is, the less restrictions you have.  
+                </p>
+                <p>
+                    Armor Config → Worn Textures + Sprite Textures 
+                </p>
+                <div class="diagram">
+                    <div class="diagram-item">
+                        <img id="config" src="../../assets/essential_graphics/config-file.png" alt="Config">
+                        <p class="diagram-label config-label">Config (.yml)</p>
+                    </div>
+                    <span class="arrow">→</span>
+                    <div class="diagram-item">
+                        <img id="texture" src="../../assets/essential_graphics/texture-file.png" alt="Texture">
+                        <p class="diagram-label texture-label">Texture (.png)</p>
+                    </div>
+                </div>
+                <hr>
+                <div style="height: 20px;"></div>
+                <h1><u>Dyed Leather:</u></h1>
+                <p>
+                    Sorry I got your hopes up. If you're trying to use this method of custom armors, you're either supporting
+                    an ancient client, or your server is on an ancient version. Please. Update. Anyways.
+                </p>
+                <hr>
+                <div style="height: 20px;"></div>
+                <h1><u>Armor Trims (1.20-1.21.1):</u></h1>
+                <p>
+                    When using armor trims, you'll want to use CHAINMAIL armor as your base item. Also note that this
+                    does require a custom datapack (Nexo generates one for you), so you'll need to restart your server
+                    every time you add or remove a set.  
+                </p>
+                <h1>Here's An Example:</h1>
+                <div class="code-block">
+                    <div class="code-header">Nexo/items/sorcerer_armor.yml</div>
+                    <pre><code class="language-yaml">
+sorcerer_chestplate:
+  itemname: "<gradient:#8A009D:#C600D2:#8A009D><bold>Sorcerer's Robe"
+  material: CHAINMAIL_CHESTPLATE
+  Pack:
+    parent_model: "item/generated"
+    texture: default/armors/sorcerer_chestplate
+  trim_pattern: nexo:sorcerer</code>
+                    </pre>
+                </div>
+            <p>
+                - `sorcerer_chestplate` is the <b>ID</b> of the item. Every item has its own, unique <b>ID</b>.
+            </p>
+            <p>
+                - The <b>base item</b>, or `material:` that this axe is using is a Chainmail Chestplate.
+            </p>
+            <p>
+                - The <b>texture</b> of this item is located in `assets/minecraft/default/armors/sorcerer_chestplate`.
+            </p>
+            <p>
+                - <b>Your armor textures must be named in THIS format:</b><i>[armorname]_armor_layer_1/2</i>
+            </p>
+            <p>
+                - For my example, this would be `sorcerer_armor_layer_1` and `sorcerer_armor_layer_2`. 
+            </p>
+            <hr>
+            <div style="height: 20px;"></div>
+            <h1>Components (1.21.2+) {THE BETTER METHOD!}</h1>
+            <p>
+                This is just the better option. No limits with this one. Any armor can be any item. Your armor could be PAPER
+                if you wanted it to be. No downsides. Also, you can use this to make custom Wolf, Horse, Llama armor.
+            </p>
+            <h1>Here's An Example:</h1>
+            <div class="code-block">
+                <div class="code-header">Nexo/items/sorcerer_armor.yml</div>
+                <pre><code class="language-yaml">
+sorcerer_chestplate:
+  itemname: "<gradient:#8A009D:#C600D2:#8A009D><bold>Sorcerer's Robe"
+  material: CHAINMAIL_CHESTPLATE
+  Pack:
+    texture: default/armors/sorcerer_chestplate
+  Components:
+    equippable:
+      slot: CHEST
+      model: nexo:sorcerer</code>
+                </pre>
+            </div>
+            <p>
+                Minor difference, but now your armors are data-driven and work much better.
+            </p>
+            <hr>
+            <div style="height: 20px;"></div>
+            <h1><u>Closing Remarks:</u></h1>
+            <p>
+                Take some time to mess around with your height/ascent and get 
+            </p>
+            <button id="back-btn" class="nav-button">
+                ← Back
+            </button>
+            <button id="furniture-btn" class="nav-button">
+                Furniture →
+            </button>
+        </div>
+    </div>
+    <script src="../../renderers/resource_packs/rp_introduction.js"></script>
+</body>
+</html>

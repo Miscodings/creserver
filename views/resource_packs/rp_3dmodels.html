@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creserver</title>
+    <link rel="stylesheet" href="../../styles/resource_packs/style.css">
+</head>
+<body>
+    <div class="title-bar">
+        <div class="custom-buttons">
+            <img id="minimize-btn" src="../../assets/essential_graphics/minimize_button.jpg" alt="Minimize">
+            <img id="close-btn" src="../../assets/essential_graphics/close_button.jpg" alt="Close">
+        </div>
+    </div>
+
+    <div class="scrollable-content">
+        <div class="centered-container2">
+            <div class="content-box">
+                <h1><u>3D Models</u></h1>
+                <p>
+                    Having custom 3D models on your server is probably the reason you decided to have a resource pack 
+                    in the first place! There's a simple diagram I like to show to everyone who I teach how this system
+                    works.
+                </p>        
+                <p>
+                    Item Config → Model → Texture 
+                </p>
+                <div class="diagram">
+                    <div class="diagram-item">
+                        <img id="config" src="../../assets/essential_graphics/config-file.png" alt="Config">
+                        <p class="diagram-label config-label">Config (.yml)</p>
+                    </div>
+                    <span class="arrow">→</span>
+                    <div class="diagram-item">
+                        <img id="json" src="../../assets/essential_graphics/json-file.png" alt="Model">
+                        <p class="diagram-label model-label">Model (.json)</p>
+                    </div>
+                    <span class="arrow">→</span>
+                    <div class="diagram-item">
+                        <img id="texture" src="../../assets/essential_graphics/texture-file.png" alt="Texture">
+                        <p class="diagram-label texture-label">Texture (.png)</p>
+                    </div>
+                </div>
+                <p>
+                    You can think of functioning 3D models like a chain of assets pointing to each other. For advanced
+                    developers, picture a singly-linked-list. The configuration of an item points to the model that is
+                    associated with this item, and the model then points to the texture that the item should use.
+                </p>
+                <h1>Here's An Example:</h1>
+                <div class="code-block">
+                    <div class="code-header">Nexo/items/ravager_items.yml</div>
+                    <pre><code class="language-yaml">
+ravagers_axe:
+  material: DIAMOND_AXE
+  itemname: ravagers_axe
+  Pack:
+    custom_model_data: 10000
+    model: ravager_models/ravagers_axe      # PAY ATTENTION TO THIS!</code>
+                    </pre>
+                </div>
+            <p>
+                - `ravagers_axe` is the <b>ID</b> of the item. Every item has its own, unique <b>ID</b>.
+            </p>
+            <p>
+                - The <b>base item</b>, or `material:` that this axe is using is a Diamond Axe.
+            </p>
+            <p>
+                - The <b>display name</b>, or `itemname:`, of this item is just "Ravager's Axe".
+            </p>
+            <p>
+                - In terms of the pack, it's <b>custom-model-data</b> is being assigned to the number 10,000.
+                I will elaborate on what this is very shortly.
+            </p>
+            <p>
+                - The model path is being assigned to a .json file located in the directory ravager_models/ravagers_axe. Here it is:
+            </p>
+            <div class="code-block">
+                <div class="code-header">Nexo/pack/assets/minecraft/models/ravager_models/ravagers_axe.json</div>
+                <pre><code class="language-yaml">
+{
+"credit": "Made with Blockbench",
+"texture_size": [64, 64],
+"textures": {
+    "1": "ravager_textures/ravagers_axe",       # PAY ATTENTION TO THIS!
+    "particle": "ravager_textures/ravagers_axe" # PAY ATTENTION TO THIS!
+},
+    "elements": [
+    /* ... Model elements and the rest of your file. */
+    ]
+} </code>
+                </pre>
+            </div>
+            <p>
+                And since the model is pointing to a texture in the above directory, I'd place my texture in:
+            </p>
+            <p>
+                Nexo/pack/assets/minecraft/textures/ravager_textures/ravagers_axe.png
+            </p>
+            <p>
+                Before we move on, let's talk about what custom-model-data actually is.
+            </p>
+            <hr>
+            <div style="height: 20px;"></div>
+            <h1><u>Custom Model Data</u></h1>
+            <p>
+                Just like how each and every custom item needs its own ID, each and every model needs its own model-data!
+            </p>
+            <p>
+                This model-data can be ANY number (within Java's limitations, of course), so with all of the possible `material`s
+                you can use alongside all of the possible custom-model-data's you can use, you can have pretty much an UNLIMITED supply
+                of custom items!
+            </p>
+            <p>
+                If you choose to create your configuration without specifying a custom-model-data, Nexo will automatically provide
+                one for you once you reload the plugin.
+            </p>
+            <p>
+                You CAN re-use the same custom-model-data on two different items, as long as they are two different `materials`. A `PAPER`
+                with custom-model-data 1,000 is different from a `FEATHER` with custom-model-data 1,000.
+            </p>
+            <img id="cmd-showcase1" src="../../assets/essential_graphics/cmd-showcase1.png" alt="Custom Model Data Showcase #1">
+            <p>
+                If you're using the same custom-model-data on two models that also share the same `material`, they'll both show the same
+                model. This is useful for when you want to create two or more different items with different lore and names, but you want
+                them both to share the same model.
+            </p>
+            <hr>
+            <div style="height: 20px;"></div>
+            <h1><u>File Paths</u></h1>
+            <p>
+                Nexo is <b>intuitive</b>. Everything is where it makes sense to be.
+            </p>
+            <p>
+                Inside of <b>Nexo/pack/assets</b>, you have the option to create your own folder (these are called namespaces),
+                or use the regular Minecraft one.
+            </p>
+            <p>
+                If you create your own one, you'll need to specify this in your item configurations with a colon.
+            </p>
+            <div class="code-block">
+                <div class="code-header">With a namespace (So my model is in assets/<b>ravager</b>/ravager_models/ravagers_axe.json):</div>
+                <pre><code class="language-yaml">
+model: ravager:ravager_models/ravagers_axe</code>
+                </pre>
+            </div>
+            <div class="code-block">
+                <div class="code-header">Without a namespace (So my model is in assets/<b>minecraft</b>/ravager_models/ravagers_axe.json):</div>
+                <pre><code class="language-yaml">
+model: ravager_models/ravagers_axe</code>
+                </pre>
+            </div>
+            <p>
+                Inside of any namespace folder, you'll have your `models` and `textures` folders, as well as other things of your choosing.
+            </p>
+            <p>
+                Once you're inside of the `models` or `textures` folders, the rest of the organization is pretty much all up to you!
+            </p>
+            <p>
+                You can create whatever sub-directories you'd like and organize your files however you see fit!
+            </p>
+            <img id="cmd-showcase2" src="../../assets/essential_graphics/cmd-showcase2.png" alt="Custom Model Data Showcase #2">
+            <hr>
+            <div style="height: 20px;"></div>
+            <h1><u>Closing Remarks:</u></h1>
+            <img id="luna-img" src="../../assets/essential_graphics/luna.png" alt="Luna">
+            <p>
+                As you can see, simpler than expected. If there's something I missed or you think is confusing, reach out to me on Discord!
+            </p>
+            <button id="back-btn" class="nav-button">
+                ← Back
+            </button>
+            <button id="2dsprites-btn" class="nav-button">
+                2D Sprites →
+            </button>
+        </div>
+    </div>
+    <script src="../../renderers/resource_packs/rp_introduction.js"></script>
+</body>
+</html>

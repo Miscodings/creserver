@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creserver</title>
+    <link rel="stylesheet" href="../../styles/resource_packs/style.css">
+</head>
+<body>
+    <div class="title-bar">
+        <div class="custom-buttons">
+            <img id="minimize-btn" src="../../assets/essential_graphics/minimize_button.jpg" alt="Minimize">
+            <img id="close-btn" src="../../assets/essential_graphics/close_button.jpg" alt="Close">
+        </div>
+    </div>
+
+    <div class="scrollable-content">
+        <div class="centered-container4">
+            <div class="content-box">
+                <h1><u>Glyphs</u></h1>
+                <p>
+                    Glyphs are also probably a big reason behind you choosing to have a resource pack on your server.
+                    They allow you to have cool rank icons, rank tags, or even display your server's logo anywhere on your server,
+                    whether it be your TAB, your Scoreboard, or even on a Hologram! 
+                </p>
+                <p>
+                    Glyph Config → Texture 
+                </p>
+                <div class="diagram">
+                    <div class="diagram-item">
+                        <img id="config" src="../../assets/essential_graphics/config-file.png" alt="Config">
+                        <p class="diagram-label config-label">Config (.yml)</p>
+                    </div>
+                    <span class="arrow">→</span>
+                    <div class="diagram-item">
+                        <img id="texture" src="../../assets/essential_graphics/texture-file.png" alt="Texture">
+                        <p class="diagram-label texture-label">Texture (.png)</p>
+                    </div>
+                </div>
+                <div style="height: 20px;"></div>
+                <h1>Here's An Example:</h1>
+                <div class="code-block">
+                    <div class="code-header">Nexo/items/skill_icons.yml</div>
+                    <pre><code class="language-yaml">
+server_logo:
+  texture: logo/server_logo
+  height: 50
+  ascent: 40
+  char: ꑂ</code>
+                    </pre>
+                </div>
+            <p>
+                - `server_logo` is the <b>ID</b> of the glyph. Just like how every item has its own ID, so does every glyph.
+            </p>
+            <p>
+                - The <b>texture</b> (or picture), that the glyph is currently using is in the provided path.
+            </p>
+            <p>
+                - Just like how items have custom-model-data, glyphs have unicodes! And just like with custom-model-data, if you
+                do not specify any, Nexo will generate unicodes for your glyphs when you reload the plugin.
+            </p>
+            <div style="height: 20px;"></div>
+            <h1>Heights & Ascents</h1>
+            <p>
+                Glyphs have `height` and `ascent` properties (these are likely renamed on different resource pack management plugins).
+            </p>
+            <p>
+                The `height` of a glyph is almost like its scale. `height` can NEVER be lower than `ascent`.
+            </p>
+            <p>
+                The `ascent` of a glyph is its vertical offset. `ascent` can NEVER be higher than `height`.
+            </p>
+            <p>
+                Once your configuration is complete, copy-paste that glyph literally anywhere in-game, whether its in chat as an emoji
+                or on a hologram as your logo, and watch your image show up!
+            </p>
+            <div style="height: 20px;"></div>
+            <h1>Custom GUIs:</h1>
+            <p>
+                Using this concept, you can create custom GUIs using glyphs, and simply copy-paste the unicode corresponding to the glyph
+                in the menu's title!
+            </p>
+            <img id="cmd-showcase4" src="../../assets/essential_graphics/cmd-showcase4.png" alt="Custom Menu">
+            <p>
+                This is a simple DeluxeMenu who's title is literally just "<shift:-8>ꑂ"!
+            </p>
+            <hr>
+            <div style="height: 20px;"></div>
+            <h1><u>Closing Remarks:</u></h1>
+            <p>
+                Take some time to mess around with your height/ascent and get 
+            </p>
+            <button id="back-btn" class="nav-button">
+                ← Back
+            </button>
+            <button id="armor-btn" class="nav-button">
+                Custom Armor →
+            </button>
+        </div>
+    </div>
+    <script src="../../renderers/resource_packs/rp_introduction.js"></script>
+</body>
+</html>
